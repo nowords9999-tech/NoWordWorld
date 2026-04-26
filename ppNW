@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Policy / プライバシーポリシー</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+      color: #222;
+      background: #fff;
+    }
+    h1, h2 {
+      line-height: 1.4;
+    }
+    h1 {
+      border-bottom: 2px solid #333;
+      padding-bottom: 8px;
+    }
+    h2 {
+      margin-top: 32px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+    .en {
+      color: #444;
+      margin-top: 8px;
+    }
+    ul {
+      padding-left: 24px;
+    }
+    .date {
+      margin-top: 40px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Privacy Policy / プライバシーポリシー</h1>
+
+  <p>
+    本プライバシーポリシーは、NoWords / NoWordWorld が提供するアプリ「NetWatch」（以下「本アプリ」）における、情報の取り扱いについて説明するものです。
+  </p>
+  <p class="en">
+    This Privacy Policy explains how NoWords / NoWordWorld handles information in the app “NetWatch” (the “App”).
+  </p>
+
+  <h2>1. 収集する情報 / Information We Collect</h2>
+
+  <p>
+    本アプリは、氏名、住所、電話番号、メールアドレスなど、ユーザーを直接特定する個人情報を収集しません。
+  </p>
+  <p class="en">
+    The App does not collect personally identifiable information such as your name, address, phone number, or email address.
+  </p>
+
+  <p>
+    本アプリは、通信制御および通信量表示のために、以下の情報を端末内で取り扱う場合があります。
+  </p>
+  <p class="en">
+    The App may process the following information locally on your device for network control and traffic usage display:
+  </p>
+
+  <ul>
+    <li>アプリ名 / App names</li>
+    <li>パッケージ名 / Package names</li>
+    <li>アプリごとの通信量 / Per-app traffic usage</li>
+    <li>接続先IPアドレス / Destination IP addresses</li>
+    <li>通信ログ / Connection logs</li>
+    <li>許可・遮断設定 / Allow/block settings</li>
+  </ul>
+
+  <p>
+    これらの情報は、端末内での表示・通信制御・ログ確認のために使用されます。
+  </p>
+  <p class="en">
+    This information is used to display traffic usage, control network access, and show connection logs within the App.
+  </p>
+
+  <h2>2. VPN機能について / Use of VPN Functionality</h2>
+
+  <p>
+    本アプリは、AndroidのVPN機能（VpnService）を使用して、端末内で動作するローカルファイアウォール機能を提供します。
+  </p>
+  <p class="en">
+    The App uses Android VpnService to provide a local, on-device firewall feature.
+  </p>
+
+  <p>
+    本アプリのVPN機能は、外部VPNサーバーに接続するものではありません。通信データを外部VPNサーバーへ送信したり、第三者のサーバーを経由させたりすることはありません。
+  </p>
+  <p class="en">
+    The VPN feature of the App does not connect to any external VPN server. Network traffic is not sent to an external VPN server and is not routed through any third-party server.
+  </p>
+
+  <p>
+    本アプリは、アプリごとの通信を許可または遮断するためにVPN機能を使用します。
+  </p>
+  <p class="en">
+    The App uses the VPN functionality to allow or block network access on a per-app basis.
+  </p>
+
+  <p>
+    なお、端末のテザリング機能を利用して接続されたPC、ゲーム機、その他の外部端末の通信は、本アプリの制御対象外となる場合があります。
+  </p>
+  <p class="en">
+    Network traffic from tethered devices, such as PCs, game consoles, or other external devices connected through the phone’s tethering feature, may not be controlled by the App.
+  </p>
+
+  <h2>3. 使用状況アクセスについて / Usage Access Permission</h2>
+
+  <p>
+    本アプリは、アプリごとの通信量を表示するために、Androidの使用状況アクセス権限を利用する場合があります。
+  </p>
+  <p class="en">
+    The App may use Android Usage Access permission to display traffic usage for each app.
+  </p>
+
+  <p>
+    使用状況アクセス権限は、ユーザーがAndroidの設定画面で明示的に許可した場合にのみ使用されます。
+  </p>
+  <p class="en">
+    Usage Access permission is used only if the user explicitly grants it in Android system settings.
+  </p>
+
+  <p>
+    本アプリは、この権限をアプリごとの通信量表示のために使用し、取得した情報を外部へ送信しません。
+  </p>
+  <p class="en">
+    The App uses this permission to display per-app traffic usage and does not transmit the obtained information externally.
+  </p>
+
+  <h2>4. アプリ一覧の取得について / App List Access</h2>
+
+  <p>
+    本アプリは、通信制御対象のアプリを一覧表示するために、端末にインストールされているアプリの情報を取得する場合があります。
+  </p>
+  <p class="en">
+    The App may access information about installed apps in order to display the list of apps that can be allowed or blocked.
+  </p>
+
+  <p>
+    取得される情報には、アプリ名、パッケージ名、システムアプリかどうかの判定などが含まれます。
+  </p>
+  <p class="en">
+    This information may include app names, package names, and whether an app is a system app.
+  </p>
+
+  <p>
+    これらの情報は端末内でのみ使用され、外部サーバーへ送信されません。
+  </p>
+  <p class="en">
+    This information is used only on the device and is not sent to external servers.
+  </p>
+
+  <h2>5. 情報の保存について / Data Storage</h2>
+
+  <p>
+    本アプリは、通信ログ、アプリごとの許可・遮断設定、通信量表示に関する情報を端末内に保存する場合があります。
+  </p>
+  <p class="en">
+    The App may store connection logs, per-app allow/block settings, and traffic usage related information locally on the device.
+  </p>
+
+  <p>
+    保存された情報は、本アプリの機能提供のためにのみ使用されます。
+  </p>
+  <p class="en">
+    Stored information is used only to provide the App’s features.
+  </p>
+
+  <p>
+    本アプリは、保存された情報を開発者または第三者のサーバーへ送信しません。
+  </p>
+  <p class="en">
+    The App does not send stored information to the developer’s server or to any third-party server.
+  </p>
+
+  <h2>6. 情報の削除について / Deleting Data</h2>
+
+  <p>
+    ユーザーは、本アプリ内のログ消去機能により、保存された通信ログを削除できます。
+  </p>
+  <p class="en">
+    Users can delete stored connection logs using the log clearing feature in the App.
+  </p>
+
+  <p>
+    また、本アプリをアンインストールすることで、本アプリが端末内に保存した情報を削除できます。
+  </p>
+  <p class="en">
+    Users can also delete information stored by the App by uninstalling the App.
+  </p>
+
+  <h2>7. 第三者への提供 / Sharing with Third Parties</h2>
+
+  <p>
+    本アプリは、取得または保存した情報を第三者に提供しません。
+  </p>
+  <p class="en">
+    The App does not share collected or stored information with third parties.
+  </p>
+
+  <p>
+    本アプリは、外部の解析ツール、広告SDK、トラッキングSDKを使用しません。
+  </p>
+  <p class="en">
+    The App does not use external analytics tools, advertising SDKs, or tracking SDKs.
+  </p>
+
+  <h2>8. 広告について / Advertising</h2>
+
+  <p>
+    本アプリは、広告を表示しません。
+  </p>
+  <p class="en">
+    The App does not display advertisements.
+  </p>
+
+  <h2>9. セキュリティについて / Security</h2>
+
+  <p>
+    本アプリは、通信制御および通信量表示を端末内で処理します。
+  </p>
+  <p class="en">
+    The App processes network control and traffic usage information locally on the device.
+  </p>
+
+  <p>
+    ただし、本アプリはウイルス駆除、マルウェア検出、不正アクセスの完全な防止を保証するものではありません。
+  </p>
+  <p class="en">
+    However, the App does not guarantee virus removal, malware detection, or complete prevention of unauthorized access.
+  </p>
+
+  <p>
+    本アプリは、ユーザーがアプリごとの通信を確認し、手動で許可または遮断するための補助ツールです。
+  </p>
+  <p class="en">
+    The App is a utility tool that helps users check and manually allow or block network access for each app.
+  </p>
+
+  <h2>10. 子どものプライバシー / Children’s Privacy</h2>
+
+  <p>
+    本アプリは、13歳未満の子どもから個人情報を意図的に収集するものではありません。
+  </p>
+  <p class="en">
+    The App does not knowingly collect personal information from children under the age of 13.
+  </p>
+
+  <h2>11. プライバシーポリシーの変更 / Changes to This Privacy Policy</h2>
+
+  <p>
+    本プライバシーポリシーは、必要に応じて変更される場合があります。
+  </p>
+  <p class="en">
+    This Privacy Policy may be updated from time to time as necessary.
+  </p>
+
+  <p>
+    重要な変更がある場合は、本ページ上で告知します。
+  </p>
+  <p class="en">
+    If there are significant changes, they will be posted on this page.
+  </p>
+
+  <h2>12. お問い合わせ / Contact</h2>
+
+  <p>
+    本プライバシーポリシーに関するお問い合わせは、以下の連絡先までお願いいたします。
+  </p>
+  <p class="en">
+    If you have any questions about this Privacy Policy, please contact us at:
+  </p>
+
+  <p>
+    Developer: NoWords / NoWordWorld<br>
+    Contact: nowords9999@gmail.com
+  </p>
+
+  <p class="date">
+    制定日 / Effective Date: 2026-04-26
+  </p>
+</body>
+</html>
