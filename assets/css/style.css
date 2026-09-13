@@ -159,3 +159,7 @@ h1{font-size:18px; margin:0}
   display: block;
   border-radius: 10px; /* 角丸いらなければ消す */
 }
+.links img.book-cover{
+  width: 220px;
+  max-width: 100%;
+}
