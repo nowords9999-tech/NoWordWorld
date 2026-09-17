@@ -131,6 +131,41 @@ h1{font-size:18px; margin:0}
   opacity:.6;
   cursor:not-allowed;
 }
+.book-layout{
+  margin-top:12px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+.book-layout .book-cover{
+  width:220px;
+  max-width:52%;
+  height:auto;
+  display:block;
+  border-radius:10px;
+}
+.book-links{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:8px;
+  flex:1;
+}
+.book-links .link{
+  display:grid;
+  min-height:52px;
+  place-items:center;
+  padding:7px 8px;
+  text-align:center;
+  font-size:13px;
+  line-height:1.35;
+}
+.book-links small{font-size:11px}
+
+@media (max-width: 560px){
+  .book-layout{flex-direction:column}
+  .book-layout .book-cover{max-width:100%}
+  .book-links{width:100%}
+}
 
 .panel{
   margin-top:14px;
@@ -158,8 +193,4 @@ h1{font-size:18px; margin:0}
   height: auto;
   display: block;
   border-radius: 10px; /* 角丸いらなければ消す */
-}
-.links img.book-cover{
-  width: 220px;
-  max-width: 100%;
 }
