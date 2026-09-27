@@ -194,6 +194,16 @@ h1{font-size:18px; margin:0}
   display: block;
   border-radius: 10px; /* 角丸いらなければ消す */
 }
+.tool-demo{
+  width: min(100%, 420px);
+  aspect-ratio: 1282 / 752;
+  margin-top: 12px;
+  display: block;
+  background: #080b11;
+  border: 1px solid rgba(32,48,70,.85);
+  border-radius: 8px;
+  object-fit: contain;
+}
 
 .manual{max-width:760px}
 .manual-header{position:static}
