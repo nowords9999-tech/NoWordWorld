@@ -1,0 +1,456 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+  background: #111;
+  color: white;
+}
+
+body {
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-area {
+  flex: 0 0 auto;
+  padding: 6px 6px 0;
+  background: #111;
+  border-bottom: 1px solid #333;
+}
+
+h1 {
+  font-size: 10px;
+  margin: 0 0 6px;
+}
+
+#preview {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  background: #222;
+  border: 1px solid #555;
+  overflow: hidden;
+  margin-bottom: 6px;
+  touch-action: none;
+}
+
+#trailLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#previewLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#drawCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+#drawHint {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: none;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.preview-shape {
+  position: absolute;
+  pointer-events: none;
+}
+
+.preview-shape.selected {
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.preview-shape.out-of-range {
+  filter: brightness(0.7);
+}
+
+.trail-piece {
+  position: absolute;
+  pointer-events: none;
+}
+
+.control-area {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.timeline-panel {
+  flex: 0 0 auto;
+  margin-bottom: 6px;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.scroll-area {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.object-panel,
+.range-panel,
+.path-panel,
+.shape-controls,
+.color-controls,
+.opacity-controls,
+.aura-controls,
+.thin-controls,
+.rotation-controls,
+.move-mode-controls,
+.delta-controls,
+.orbit-controls,
+.trail-controls,
+.sound-source-panel,
+.sound-events-panel,
+.json-panel,
+.state-view,
+.controls {
+  background: #1a1a1a;
+  border: 1px solid #444;
+  padding: 4px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
+
+.timeline-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.timeline-row label {
+  min-width: 42px;
+}
+
+#frameSlider {
+  flex: 1;
+}
+
+.timeline-buttons,
+.button-wrap,
+.object-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.delta-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.delta-row span:first-child {
+  display: inline-block;
+  min-width: 52px;
+}
+
+.delta-row span[id$="Value"] {
+  min-width: 32px;
+  text-align: center;
+  display: inline-block;
+  font-weight: bold;
+}
+
+button {
+  font-size: 10px;
+  padding: 2px 4px;
+  background: #333;
+  color: white;
+  border: 1px solid #666;
+  border-radius: 4px;
+}
+
+button.active {
+  background: #ddd;
+  color: #111;
+  border-color: #fff;
+  font-weight: bold;
+}
+
+.object-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.object-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 3px 4px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #222;
+}
+
+.object-item.selected {
+  border-color: #aaa;
+  background: #333;
+}
+
+.object-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#jsonArea {
+  width: 100%;
+  min-height: 160px;
+  box-sizing: border-box;
+  background: #111;
+  color: white;
+  border: 1px solid #555;
+  margin-top: 4px;
+  font-size: 10px;
+  font-family: monospace;
+}
+
+.state-view p,
+.object-panel p,
+.range-panel p,
+.path-panel p,
+.shape-controls p,
+.color-controls p,
+.opacity-controls p,
+.rotation-controls p,
+.move-mode-controls p,
+.delta-controls p,
+.orbit-controls p,
+.trail-controls p,
+.sound-source-panel,
+.sound-events-panel,
+.json-panel p {
+  margin: 2px 0 4px;
+}
+.aura-controls,
+.thin-controls {
+  background: #1a1a1a;
+  border: 1px solid #444;
+  padding: 4px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
+
+.aura-controls p,
+.thin-controls p {
+  margin: 2px 0 4px;
+}
+
+.shape-wrapper {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.shape-part {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+html, body, .app, .control-area, .scroll-area, button, span, p, div, canvas {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+button {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+#effectNameInput {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  background: #111;
+  color: white;
+  border: 1px solid #555;
+  font-size: 10px;
+  padding: 2px 4px;
+}
+
+#soundSourceStatusText {
+  margin: 2px 0 4px;
+  color: #ccc;
+  word-break: break-all;
+}
+
+.sound-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 160px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+
+.sound-file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 3px 4px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #222;
+}
+
+.sound-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.sound-file-meta {
+  color: #aaa;
+  flex: 0 0 auto;
+}
+
+#selectedSoundName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #ddd;
+}
+
+.sound-file-item {
+  cursor: pointer;
+}
+
+.sound-file-item.selected {
+  border-color: #aaa;
+  background: #333;
+}
+
+.sound-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.sound-event-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #222;
+}
+
+.sound-event-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.sound-event-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.sound-event-frame {
+  color: #aaa;
+  flex: 0 0 auto;
+}
+
+.sound-event-meta {
+  color: #bbb;
+  word-break: break-all;
+}
+
+.sound-event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.sound-event-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.sound-event-edit .delta-row {
+  margin-bottom: 0;
+}
+
+.sound-event-edit .delta-row span:first-child {
+  min-width: 44px;
+}
+
+#soundFilterInput {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  background: #111;
+  color: white;
+  border: 1px solid #555;
+  font-size: 10px;
+  padding: 2px 4px;
+}
+
+#soundFileCountText {
+  min-width: 56px;
+  text-align: right;
+  color: #aaa;
+}
+
+#soundSelect {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  background: #111;
+  color: white;
+  border: 1px solid #555;
+  font-size: 10px;
+  padding: 2px 4px;
+}

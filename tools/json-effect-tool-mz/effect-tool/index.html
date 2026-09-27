@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Effect Tool for RPG Maker MZ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="preview-area">
+      <h1>JSON Effect Tool MZ</h1>
+      <div id="preview">
+        <div id="trailLayer"></div>
+        <div id="previewLayer"></div>
+        <canvas id="drawCanvas"></canvas>
+        <div id="drawHint">軌道入力中: 指でなぞってください</div>
+      </div>
+    </div>
+
+    <div class="control-area">
+      <div class="timeline-panel">
+        <div class="timeline-row">
+          <label for="frameSlider">フレーム（60fps）</label>
+          <input type="range" id="frameSlider" min="0" max="59" value="0">
+          <span id="frameLabel">0</span> / 59
+        </div>
+
+        <div class="timeline-buttons">
+          <button id="prevFrameBtn">前</button>
+          <button id="nextFrameBtn">次</button>
+          <button id="copyPrevBtn">前フレームをコピー</button>
+          <button id="playBtn">再生</button>
+        </div>
+      </div>
+
+      <div class="scroll-area">
+        <div class="object-panel">
+          <p>オブジェクト</p>
+          <div class="object-toolbar">
+            <button id="addObjectBtn">追加</button>
+            <button id="duplicateObjectBtn">複製</button>
+            <button id="renameObjectBtn">名前変更</button>
+            <button id="deleteObjectBtn">削除</button>
+          </div>
+          <div id="objectList" class="object-list"></div>
+        </div>
+
+        <div class="range-panel">
+          <p>出現範囲</p>
+          <div class="delta-row">
+            <span>start</span>
+            <button id="startFrameDownBtn">-1</button>
+            <span id="startFrameValue">0</span>
+            <button id="startFrameUpBtn">+1</button>
+          </div>
+          <div class="delta-row">
+            <span>end</span>
+            <button id="endFrameDownBtn">-1</button>
+            <span id="endFrameValue">59</span>
+            <button id="endFrameUpBtn">+1</button>
+          </div>
+        </div>
+
+        <div class="path-panel">
+          <p>軌道入力</p>
+          <div class="object-toolbar">
+            <button id="startPathBtn">軌道入力</button>
+            <button id="applyPathBtn">適用</button>
+            <button id="cancelPathBtn">やり直し</button>
+          </div>
+          <p id="pathStatusText">待機中</p>
+        </div>
+
+        <div class="controls">
+          <p>位置 / サイズ</p>
+          <div class="button-wrap">
+            <button id="moveLeftBtn">←</button>
+            <button id="moveRightBtn">→</button>
+            <button id="moveUpBtn">↑</button>
+            <button id="moveDownBtn">↓</button>
+            <button id="sizeUpBtn">拡大</button>
+            <button id="sizeDownBtn">縮小</button>
+          </div>
+        </div>
+
+        <div class="shape-controls">
+          <p>図形</p>
+          <div class="button-wrap">
+            <button id="shapeSquareBtn">四角</button>
+            <button id="shapeCircleBtn">丸</button>
+            <button id="shapeTriangleBtn">三角</button>
+          </div>
+        </div>
+
+        <div class="color-controls">
+          <p>色</p>
+          <div class="button-wrap">
+            <button id="colorCyanBtn">シアン</button>
+            <button id="colorRedBtn">赤</button>
+            <button id="colorYellowBtn">黄</button>
+            <button id="colorLimeBtn">緑</button>
+            <button id="colorWhiteBtn">白</button>
+            <button id="colorMagentaBtn">紫</button>
+          </div>
+        </div>
+
+        <div class="opacity-controls">
+          <p>透明度</p>
+          <div class="button-wrap">
+            <button id="opacityDownBtn">薄く</button>
+            <span id="opacityValue">1.0</span>
+            <button id="opacityUpBtn">濃く</button>
+          </div>
+        </div>
+
+        <div class="aura-controls">
+          <p>オーラ</p>
+          <div class="delta-row">
+            <span>on/off</span>
+            <button id="auraToggleBtn">切替</button>
+            <span id="auraEnabledValue">OFF</span>
+          </div>
+          <div class="delta-row">
+            <span>size</span>
+            <button id="auraSizeDownBtn">-2</button>
+            <span id="auraSizeValue">12</span>
+            <button id="auraSizeUpBtn">+2</button>
+          </div>
+          <div class="delta-row">
+            <span>alpha</span>
+            <button id="auraAlphaDownBtn">-0.05</button>
+            <span id="auraAlphaValue">0.25</span>
+            <button id="auraAlphaUpBtn">+0.05</button>
+          </div>
+        </div>
+
+        <div class="thin-controls">
+          <p>細さ</p>
+          <div class="delta-row">
+            <span>thinX</span>
+            <button id="thinDownBtn">-0.1</button>
+            <span id="thinValue">1.0</span>
+            <button id="thinUpBtn">+0.1</button>
+          </div>
+        </div>
+
+        <div class="rotation-controls">
+          <p>回転</p>
+          <div class="delta-row">
+            <span>rotation</span>
+            <button id="rotationDownBtn">-15</button>
+            <span id="rotationValue">0</span>
+            <button id="rotationUpBtn">+15</button>
+          </div>
+          <div class="delta-row">
+            <span>dRotation</span>
+            <button id="dRotationDownBtn">-5</button>
+            <span id="dRotationValue">0</span>
+            <button id="dRotationUpBtn">+5</button>
+          </div>
+        </div>
+
+        <div class="move-mode-controls">
+          <p>移動モード</p>
+          <div class="button-wrap">
+            <button id="moveModeManualBtn">手動</button>
+            <button id="moveModeNormalBtn">通常</button>
+            <button id="moveModeDnaBtn">DNA</button>
+            <button id="moveModeSpiralBtn">螺旋</button>
+          </div>
+          <p id="moveModeText">mode: manual</p>
+        </div>
+
+        <div class="delta-controls">
+          <p>毎フレーム変化量</p>
+          <div class="delta-row">
+            <span>dx</span>
+            <button id="dxDownBtn">-</button>
+            <span id="dxValue">0</span>
+            <button id="dxUpBtn">+</button>
+          </div>
+          <div class="delta-row">
+            <span>dy</span>
+            <button id="dyDownBtn">-</button>
+            <span id="dyValue">0</span>
+            <button id="dyUpBtn">+</button>
+          </div>
+          <div class="delta-row">
+            <span>dSize</span>
+            <button id="dSizeDownBtn">-</button>
+            <span id="dSizeValue">0</span>
+            <button id="dSizeUpBtn">+</button>
+          </div>
+          <div class="delta-row">
+            <span>dOpacity</span>
+            <button id="dOpacityDownBtn">-</button>
+            <span id="dOpacityValue">0.0</span>
+            <button id="dOpacityUpBtn">+</button>
+          </div>
+        </div>
+
+        <div class="orbit-controls">
+          <p>DNA / 螺旋パラメータ</p>
+          <div class="delta-row">
+            <span>waveAmp</span>
+            <button id="waveAmpDownBtn">-5</button>
+            <span id="waveAmpValue">20</span>
+            <button id="waveAmpUpBtn">+5</button>
+          </div>
+          <div class="delta-row">
+            <span>waveSpeed</span>
+            <button id="waveSpeedDownBtn">-0.1</button>
+            <span id="waveSpeedValue">0.3</span>
+            <button id="waveSpeedUpBtn">+0.1</button>
+          </div>
+          <div class="delta-row">
+            <span>radiusStep</span>
+            <button id="radiusStepDownBtn">-1</button>
+            <span id="radiusStepValue">2</span>
+            <button id="radiusStepUpBtn">+1</button>
+          </div>
+          <div class="delta-row">
+            <span>rotateSpeed</span>
+            <button id="rotateSpeedDownBtn">-0.1</button>
+            <span id="rotateSpeedValue">0.2</span>
+            <button id="rotateSpeedUpBtn">+0.1</button>
+          </div>
+        </div>
+
+        <div class="trail-controls">
+          <p>残像</p>
+          <div class="delta-row">
+            <span>fade</span>
+            <button id="trailFadeDownBtn">-0.02</button>
+            <span id="trailFadeValue">0.08</span>
+            <button id="trailFadeUpBtn">+0.02</button>
+          </div>
+          <div class="delta-row">
+            <span>density</span>
+            <button id="trailDensityDownBtn">-1</button>
+            <span id="trailDensityValue">4</span>
+            <button id="trailDensityUpBtn">+1</button>
+          </div>
+        </div>
+
+          <div class="sound-source-panel">
+            <p>情報源 / 効果音</p>
+
+            <div class="object-toolbar">
+              <button id="pickSoundFolderBtn">フォルダ指定</button>
+              <button id="reconnectSoundFolderBtn">前回フォルダ再接続</button>
+              <button id="pickSoundFilesBtn">ファイル追加</button>
+              <button id="clearSoundSourceBtn">解除</button>
+            </div>
+
+            <input id="soundFilesInput" type="file" accept="audio/*" multiple hidden />
+            <input id="soundFolderInput" type="file" accept="audio/*" webkitdirectory directory multiple hidden />
+
+            <p id="soundSourceStatusText">未設定</p>
+
+            <div class="delta-row">
+              <span>selected</span>
+              <span id="selectedSoundName">なし</span>
+              <button id="previewSoundBtn">試聴</button>
+              <button id="addSoundEventBtn">今のフレームに追加</button>
+            </div>
+
+            <div class="delta-row">
+              <span>sound</span>
+              <select id="soundSelect"></select>
+              <span id="soundFileCountText">0</span>
+            </div>
+          </div>
+                  <div class="sound-events-panel">
+            <p>効果音イベント</p>
+            <div id="soundEventList" class="sound-event-list"></div>
+          </div>
+
+<div class="json-panel">
+  <p>JSON</p>
+
+  <div class="delta-row">
+    <span>name</span>
+    <input id="effectNameInput" type="text" value="effect_01" />
+  </div>
+
+  <div class="delta-row">
+    <span>JFX key</span>
+    <input id="effectKeyInput" type="text" value="effect_01" />
+  </div>
+
+  <div class="delta-row">
+    <span>coordinate</span>
+    <select id="coordinateModeSelect">
+      <option value="target">対象中心</option>
+      <option value="sourceToTarget">使用者 → 対象</option>
+    </select>
+  </div>
+
+  <div class="delta-row">
+    <span>source X</span>
+    <input id="sourceXInput" type="number" value="20" />
+    <span>target X</span>
+    <input id="targetXInput" type="number" value="200" />
+  </div>
+
+  <div class="object-toolbar">
+    <button id="exportJsonBtn">JSON書き出し</button>
+    <button id="downloadJsonBtn">保存</button>
+    <button id="importJsonBtn">JSON読込</button>
+    <button id="loadJsonFileBtn">ファイル読込</button>
+  </div>
+
+  <div class="object-toolbar">
+    <button id="loadMzLibraryBtn">MZライブラリ読込</button>
+    <button id="saveMzLibraryBtn">現在の効果を登録して保存</button>
+  </div>
+
+  <p id="mzLibraryStatusText">MZライブラリ: 新規</p>
+
+  <input id="jsonFileInput" type="file" accept=".json,application/json" hidden />
+  <input id="mzLibraryFileInput" type="file" accept=".json,application/json" hidden />
+
+  <textarea id="jsonArea" spellcheck="false"></textarea>
+</div>
+
+        <div class="state-view">
+          <p>現在の選択オブジェクト / フレーム値</p>
+          <p id="stateText"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
