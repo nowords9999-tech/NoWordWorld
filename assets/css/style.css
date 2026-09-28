@@ -204,6 +204,43 @@ h1{font-size:18px; margin:0}
   border-radius: 8px;
   object-fit: contain;
 }
+.affiliate-banner{
+  margin: 22px 0 8px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(220px, 308px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  border-top: 1px solid rgba(32,48,70,.85);
+  border-bottom: 1px solid rgba(32,48,70,.85);
+  background: rgba(17,24,38,.45);
+}
+.affiliate-image img{
+  width: 100%;
+  aspect-ratio: 616 / 353;
+  display: block;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.affiliate-copy h3{
+  margin: 2px 0 14px;
+  font-size: 18px;
+}
+.affiliate-label{
+  margin: 0;
+  color: var(--accent2);
+  font-size: 12px;
+  font-weight: 700;
+}
+.affiliate-copy small{
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+}
+@media (max-width: 600px){
+  .affiliate-banner{grid-template-columns: 1fr}
+}
 
 .manual{max-width:760px}
 .manual-header{position:static}
