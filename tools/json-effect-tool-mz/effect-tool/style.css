@@ -454,3 +454,32 @@ button {
   font-size: 10px;
   padding: 2px 4px;
 }
+
+@media (min-width: 900px) {
+  .app {
+    flex-direction: row;
+  }
+
+  .preview-area {
+    flex: 0 0 58%;
+    min-width: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-right: 1px solid #333;
+    border-bottom: 0;
+  }
+
+  #preview {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+  }
+
+  .control-area {
+    flex: 1 1 42%;
+    min-width: 360px;
+    height: 100vh;
+  }
+}
