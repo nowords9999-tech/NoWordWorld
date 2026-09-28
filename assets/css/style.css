@@ -232,12 +232,6 @@ h1{font-size:18px; margin:0}
   font-size: 12px;
   font-weight: 700;
 }
-.affiliate-copy small{
-  display: block;
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 11px;
-}
 @media (max-width: 600px){
   .affiliate-banner{grid-template-columns: 1fr}
 }
