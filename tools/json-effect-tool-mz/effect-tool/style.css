@@ -27,7 +27,29 @@ body {
 
 h1 {
   font-size: 10px;
-  margin: 0 0 6px;
+  margin: 0;
+}
+
+.tool-header {
+  min-height: 22px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.home-link,
+.mz-affiliate-link {
+  color: white;
+  text-decoration: none;
+  background: #333;
+  border: 1px solid #666;
+  border-radius: 4px;
+}
+
+.home-link {
+  padding: 3px 7px;
 }
 
 #preview {
@@ -453,6 +475,46 @@ button {
   border: 1px solid #555;
   font-size: 10px;
   padding: 2px 4px;
+}
+
+.mz-affiliate {
+  padding: 6px;
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
+
+.mz-affiliate img {
+  width: 100%;
+  aspect-ratio: 616 / 353;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.mz-affiliate p {
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+
+.mz-affiliate .mz-affiliate-label {
+  color: #ffb45f;
+  font-weight: bold;
+}
+
+.mz-affiliate-link {
+  display: inline-block;
+  padding: 3px 6px;
+}
+
+@media (max-width: 420px) {
+  .mz-affiliate {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 900px) {
