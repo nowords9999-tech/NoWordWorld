@@ -1,0 +1,275 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #222;
+  color: #eee;
+  font-family: sans-serif;
+}
+
+#tool-header {
+  height: 48px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #555;
+  background: #181818;
+}
+
+.home-link {
+  padding: 7px 11px;
+  border: 1px solid #888;
+  border-radius: 6px;
+  color: #fff;
+  background: #444;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-link:hover {
+  border-color: #ffb45a;
+  background: #555;
+}
+
+#app {
+  display: flex;
+  height: calc(100vh - 48px);
+  overflow: hidden;
+}
+
+/* -------- 左：スライスパネル -------- */
+#slice-panel {
+  width: 600px;
+  border-right: 2px solid #444;
+  padding: 10px;
+  overflow-y: auto;
+  background: #2b2b2b;
+}
+
+#slice-panel input {
+  background: #111;
+  color: #eee;
+  border: 1px solid #555;
+  width: 60px;
+}
+
+.slice-setting {
+  margin: 6px 0;
+}
+
+#sliceWindow {
+  width: 600px;
+  flex: 0 0 600px;
+}
+
+
+/* スライスプレビュー */
+#slice-preview-container {
+  width: 500px;
+  height: 500px;
+  background: transparent; 
+  border: 1px solid #444;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#slice-preview-canvas {
+  background: transparent;
+  cursor: grab;
+}
+
+/* パレット */
+#slice-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+#slice-list canvas {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #555;
+  background: transparent;
+  cursor: grab;
+}
+
+/* -------- 真ん中：グリッド -------- */
+#grid-panel {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#grid-settings input {
+  width: 50px;
+  background: #111;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+#grid-container {
+  flex: 1;
+  border: 1px solid #555;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+/* -------- 右：微調整 -------- */
+#adjust-panel {
+  width: 280px;
+  border-left: 2px solid #444;
+  padding: 10px;
+  background: #2b2b2b;
+  overflow-y: auto;
+}
+
+#offset-buttons button,
+#adjust-panel button {
+  background: #555;
+  border: 1px solid #777;
+  color: #eee;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.game-banners {
+  display: grid;
+  gap: 8px;
+}
+
+.game-banner {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background: #111;
+  box-sizing: border-box;
+}
+
+.game-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.game-banner:hover {
+  border-color: #ffb45a;
+}
+
+.chrono-banner {
+  height: 150px;
+}
+
+.chrono-banner img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 72%;
+}
+
+.chrono-banner span {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 5px 8px;
+  color: #fff;
+  background: rgba(0, 0, 0, .78);
+  border: 1px solid rgba(255, 255, 255, .35);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.chrono-banner small {
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.affiliate-title {
+  margin: 14px 0 8px;
+  color: #ffb45a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.mz-affiliate span {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 5px 8px;
+  color: #fff;
+  background: rgba(0, 0, 0, .78);
+  border: 1px solid rgba(255, 255, 255, .35);
+  font-weight: 700;
+}
+
+#slice-partial-container {
+  background: transparent !important;
+}
+/* =========================
+   グリッドパネル：巨大サイズでも崩れない土台
+========================= */
+#grid-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* flex内のはみ出し防止 */
+  gap: 8px;
+}
+
+/* 入力行が横に伸びて崩れるのを防ぐ */
+#grid-settings,
+.grid-save-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+#grid-settings label {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+#grid-settings input {
+  width: 90px;      /* ここは好みで */
+  max-width: 140px; /* 暴走防止 */
+}
+
+/* グリッド表示枠：高さを確保し、はみ出しは中で吸収 */
+#grid-container {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 320px;         /* “最低これだけは表示する” */
+  max-height: 70vh;          /* 画面が小さくても破綻しにくい */
+  width: 100%;
+  overflow: auto;            /* どうしても足りない時はスクロール */
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+}
+
+/* canvas 自体は container に追随（実描画はJSでfit済み） */
+#grid-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   キャンバスのカーソルを全部矢印に統一
+========================= */
+#slice-preview-canvas,
+#slice-partial-canvas,
+#slice-list canvas,
+#grid-canvas {
+  cursor: default !important;
+}
